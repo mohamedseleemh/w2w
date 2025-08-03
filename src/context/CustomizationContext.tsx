@@ -373,7 +373,11 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
   const publishPage = async (): Promise<void> => {
     try {
       setLoading(true);
-      // Here you would typically send the data to your backend
+
+      // Save to database first
+      const saved = await saveToDatabase(customization);
+
+      // Also save to localStorage as published version
       localStorage.setItem('kyctrust_published_page', JSON.stringify(customization));
 
       // Trigger a page refresh to apply changes
@@ -381,10 +385,15 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
         detail: customization
       }));
 
-      setError(null);
+      if (!saved) {
+        setError('تم نشر الصفحة محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في نشر الصفحة';
       setError(errorMessage);
+      console.error('Error publishing page:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
