@@ -8,7 +8,7 @@ import { ThemeProvider } from './context/ThemeContext';
 import { CustomizationProvider } from './context/CustomizationContext';
 import { env } from './utils/env';
 import { initializeGlobalErrorHandler } from './utils/globalErrorHandler';
-import './utils/completeTrackEventSilencer'; // Complete silence for trackEvent errors
+// Track event errors are handled by global error handler
 
 function App() {
   useEffect(() => {
