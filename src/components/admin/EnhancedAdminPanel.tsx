@@ -3,7 +3,7 @@ import {
   Shield, Settings, Package, CreditCard, Inbox, BarChart3, RefreshCw,
   Users, FileText, Database, Edit3, User, Move, Paintbrush,
   Sliders, Grip, Layers, Activity, Zap, Bell, Search,
-  Globe, Star, MessageCircle, Image, Menu,
+  Globe, Star, MessageCircle, Image, Menu, Layout,
   Cloud, Server, Cpu, HardDrive, Wifi, Lock, AlertTriangle, BookOpen
 } from 'lucide-react';
 import LoginForm from './LoginForm';
@@ -363,7 +363,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="text-center">
                 <Star className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  المساعد الذكي غير متاح حالي��ً
+                  المساعد الذكي غير م��اح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
