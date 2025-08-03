@@ -159,45 +159,70 @@ export class LandingPageService {
 
   // Landing Page Customization Operations
   async getLandingCustomization(sectionName?: string): Promise<LandingCustomization[]> {
-    let query = supabase
-      .from('landing_customization')
-      .select('*')
-      .eq('active', true);
+    try {
+      if (!supabase) {
+        console.warn('Database not available, returning empty customization');
+        return [];
+      }
 
-    if (sectionName) {
-      query = query.eq('section_name', sectionName);
+      let query = supabase
+        .from('landing_customization')
+        .select('*')
+        .eq('active', true);
+
+      if (sectionName) {
+        query = query.eq('section_name', sectionName);
+      }
+
+      const dbCall = query.order('created_at', { ascending: false });
+
+      return this._handleDbCall(dbCall, 'Error fetching landing customization:');
+    } catch (error) {
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.warn('Failed to fetch landing customization:', errorMsg);
+      return [];
     }
-
-    const dbCall = query.order('created_at', { ascending: false });
-
-    return this._handleDbCall(dbCall, 'Error fetching landing customization:');
   }
 
   async saveLandingCustomization(sectionName: string, content: any): Promise<LandingCustomization> {
-    const { data: existingData } = await supabase
-      .from('landing_customization')
-      .select('id')
-      .eq('section_name', sectionName)
-      .eq('active', true)
-      .single();
+    try {
+      if (!supabase) {
+        throw new Error('Database not available');
+      }
 
-    if (existingData) {
-      const dbCall = supabase
+      const { data: existingData, error: selectError } = await supabase
         .from('landing_customization')
-        .update({ content, updated_at: new Date().toISOString() })
-        .eq('id', existingData.id)
-        .select()
+        .select('id')
+        .eq('section_name', sectionName)
+        .eq('active', true)
         .single();
 
-      return this._handleDbCall(dbCall, 'Error updating landing customization:');
-    } else {
-      const dbCall = supabase
-        .from('landing_customization')
-        .insert([{ section_name: sectionName, content }])
-        .select()
-        .single();
+      if (selectError && selectError.code !== 'PGRST116') { // PGRST116 is "no rows found"
+        throw selectError;
+      }
 
-      return this._handleDbCall(dbCall, 'Error creating landing customization:');
+      if (existingData) {
+        const dbCall = supabase
+          .from('landing_customization')
+          .update({ content, updated_at: new Date().toISOString() })
+          .eq('id', existingData.id)
+          .select()
+          .single();
+
+        return this._handleDbCall(dbCall, 'Error updating landing customization:');
+      } else {
+        const dbCall = supabase
+          .from('landing_customization')
+          .insert([{ section_name: sectionName, content }])
+          .select()
+          .single();
+
+        return this._handleDbCall(dbCall, 'Error creating landing customization:');
+      }
+    } catch (error) {
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.error('Failed to save landing customization:', errorMsg);
+      throw new Error(`Failed to save customization: ${errorMsg}`);
     }
   }
 
@@ -260,7 +285,7 @@ export class LandingPageService {
         visible: true,
         content: {
           title: 'مرحباً بكم في منصتنا',
-          subtitle: 'خدمات رقمية متطورة',
+          subtitle: 'خدمات ر��مية متطورة',
           description: 'نقدم حلول مبتكرة وآمنة لاحتياجاتكم الرقمية',
           buttonText: 'ابدأ الآن'
         },
