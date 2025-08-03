@@ -118,7 +118,7 @@ export const SiteSettingsManager: React.FC = () => {
           companyAddress: 'الرياض، المملكة العربية السعودية',
           companyCity: 'الرياض',
           companyCountry: 'المملكة العربية السعودية',
-          companyPhone: '+966501234567',
+          companyPhone: '+201062453344',
           companyEmail: 'info@kyctrust.com',
           companyWebsite: 'https://kyctrust.com',
           
@@ -133,7 +133,7 @@ export const SiteSettingsManager: React.FC = () => {
           },
           
           socialMedia: {
-            whatsapp: '+966501234567',
+            whatsapp: '+201062453344',
             telegram: '@kyctrust',
             twitter: '@kyctrust',
             instagram: 'kyctrust',
@@ -533,7 +533,7 @@ export const SiteSettingsManager: React.FC = () => {
                   type="text"
                   value={settings.socialMedia.whatsapp}
                   onChange={(e) => updateSetting('socialMedia', 'whatsapp', e.target.value)}
-                  placeholder="+966501234567"
+                  placeholder="+201062453344"
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-700 rounded-lg
                            bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                 />

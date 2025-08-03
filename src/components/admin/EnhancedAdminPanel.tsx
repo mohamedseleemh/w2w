@@ -10,7 +10,7 @@ import LoginForm from './LoginForm';
 import AdvancedDashboard from './AdvancedDashboard';
 import VisualLandingEditor from './VisualLandingEditor';
 import ServicesManager from './ServicesManager';
-import PaymentMethodsManager from './PaymentMethodsManager';
+import EnhancedPaymentMethodsManager from './EnhancedPaymentMethodsManager';
 import OrdersManager from './OrdersManager';
 import SiteSettingsManager from './SiteSettingsManager';
 import AdminSettingsManager from './AdminSettingsManager';
@@ -83,7 +83,7 @@ const EnhancedAdminPanel: React.FC = () => {
       title: 'تحديث النظام',
       message: 'تم تحديث النظام بنجاح إلى الإصدار 2.1',
       type: 'success',
-      time: 'منذ ساعة',
+      time: 'منذ س��عة',
       read: false
     },
     {
@@ -173,7 +173,7 @@ const EnhancedAdminPanel: React.FC = () => {
       icon: FileText,
       tabs: [
         { id: 'reports' as TabType, name: 'التقارير المفصلة', icon: FileText, color: 'text-blue-600' },
-        { id: 'backup' as TabType, name: 'النسخ الاحتياطية', icon: Database, color: 'text-green-600' }
+        { id: 'backup' as TabType, name: '��لنسخ الاحتياطية', icon: Database, color: 'text-green-600' }
       ]
     },
     {
@@ -363,7 +363,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="text-center">
                 <Star className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  المساعد الذكي غير م��اح حالي��ً
+                  المساعد الذكي غير متاح حالي���ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
