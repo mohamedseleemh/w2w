@@ -31,6 +31,8 @@ type TabType =
   | 'dashboard'
   | 'landing-page'
   | 'visual-editor'
+  | 'media'
+  | 'menu'
   | 'services'
   | 'services-layout'
   | 'payments'
@@ -120,7 +122,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'لوحة التحكم',
       icon: Shield,
       tabs: [
-        { id: 'dashboard' as TabType, name: 'لوحة التحكم المتقدمة', icon: Activity, color: 'text-blue-600' },
+        { id: 'dashboard' as TabType, name: 'لوحة التحكم المتقدم��', icon: Activity, color: 'text-blue-600' },
         { id: 'analytics' as TabType, name: 'التحليلات والإحصائيات', icon: BarChart3, color: 'text-green-600' },
         { id: 'system-monitor' as TabType, name: 'مراقبة النظام', icon: Server, color: 'text-purple-600' }
       ]
