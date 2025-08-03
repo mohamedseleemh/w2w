@@ -216,7 +216,7 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
     loadCustomization();
   }, []);
 
-  const saveToDatabase = async (data: CustomizationData) => {
+  const saveToDatabase = async (data: CustomizationData): Promise<boolean> => {
     try {
       await landingPageService.savePageTemplate({
         name: 'Default Landing Page',
@@ -226,9 +226,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
         is_default: true,
         active: true,
       });
+      return true;
     } catch (error) {
-      console.error('Error saving customization to DB:', error);
-      throw new Error('فشل في حفظ التخصيص في قاعدة البيانات');
+      console.warn('Failed to save to database, using localStorage fallback:', error);
+      // Save to localStorage as fallback
+      try {
+        localStorage.setItem('kyctrust_customization', JSON.stringify(data));
+        return false; // Indicate DB save failed but localStorage succeeded
+      } catch (localError) {
+        console.error('Failed to save to localStorage as well:', localError);
+        throw new Error('فشل في حفظ التخصيص');
+      }
     }
   };
 
@@ -237,11 +245,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, hero };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
+
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في حفظ إعدادات القسم الرئيسي';
       setError(errorMessage);
+      console.error('Error updating hero section:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
@@ -253,10 +267,8 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, globalSettings: settings };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
 
-      // Apply CSS variables to the document
+      // Apply CSS variables to the document immediately
       const root = document.documentElement;
       root.style.setProperty('--primary-color', settings.primaryColor);
       root.style.setProperty('--secondary-color', settings.secondaryColor);
@@ -265,9 +277,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       root.style.setProperty('--border-radius', settings.borderRadius);
       root.style.setProperty('--spacing', settings.spacing);
 
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
+
     } catch (error) {
       const errorMessage = 'فشل في حفظ الإعدادات العامة';
       setError(errorMessage);
+      console.error('Error updating global settings:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
@@ -279,11 +299,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, pageElements: elements };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
+
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في حفظ عناصر الصفحة';
       setError(errorMessage);
+      console.error('Error updating page elements:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
