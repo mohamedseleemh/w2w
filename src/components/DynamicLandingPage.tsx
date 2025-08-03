@@ -71,7 +71,7 @@ const loadPageContent = () => {
       visible: true
     },
     stats: {
-      title: 'أرقامنا تتحدث',
+      title: 'أرقامن�� تتحدث',
       items: [
         { label: 'عميل راضي', value: 10000, suffix: '+', icon: '👥', color: '#3B82F6' },
         { label: 'معاملة يومية', value: 5000, suffix: '+', icon: '💳', color: '#10B981' },
@@ -98,7 +98,7 @@ const loadPageContent = () => {
           text: 'أفضل منصة للخدمات المالية الرقمية، أمان وسرعة لا مثيل لهما',
           rating: 5,
           image: '',
-          company: 'مجموعة ا��ابتكار'
+          company: 'مجموعة الابتكار'
         },
         {
           name: 'محمد خالد',
@@ -301,19 +301,25 @@ const DynamicLandingPage: React.FC = () => {
                 {pageContent.hero.subtitle}
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button
+                <EnhancedButton
+                  variant="primary"
+                  size="lg"
+                  glow
+                  elevation
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-white text-blue-600 hover:bg-gray-100 font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg"
+                  className="bg-white text-blue-600 hover:bg-gray-100"
                 >
                   {pageContent.hero.buttonText}
-                </button>
+                </EnhancedButton>
                 {pageContent.hero.secondaryButtonText && (
-                  <button
+                  <EnhancedButton
+                    variant="secondary"
+                    size="lg"
                     onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold rounded-xl transition-all duration-300"
+                    className="border-2 border-white text-white hover:bg-white hover:text-blue-600"
                   >
                     {pageContent.hero.secondaryButtonText}
-                  </button>
+                  </EnhancedButton>
                 )}
               </div>
             </div>
