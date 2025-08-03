@@ -25,7 +25,7 @@ import AdvancedDashboard from './AdvancedDashboard';
 import AdvancedContentManager from './AdvancedContentManager';
 import EnhancedSettingsManager from './EnhancedSettingsManager';
 import EnhancedPaymentMethodsManager from './EnhancedPaymentMethodsManager';
-import BackupManager from './BackupManager';
+import { BackupManager } from './BackupManager';
 import { AnalyticsPanel } from './AnalyticsPanel';
 import ServicesManager from './ServicesManager';
 import OrdersManager from './OrdersManager';
