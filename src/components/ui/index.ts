@@ -14,3 +14,7 @@ export {
   EnhancedDropdownButton,
   FloatingActionButton
 } from './EnhancedButtonSystem';
+
+// Super Components (Latest Enhanced Version)
+export { default as SuperThemeToggle } from './SuperThemeToggle';
+export { default as SuperLanguageToggle } from './SuperLanguageToggle';
