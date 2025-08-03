@@ -3,7 +3,7 @@ import {
   Shield, Settings, Package, CreditCard, Inbox, BarChart3, RefreshCw,
   Users, FileText, Database, Edit3, User, Move, Paintbrush,
   Sliders, Grip, Layers, Activity, Zap, Bell, Search,
-  Globe, Star,
+  Globe, Star, MessageCircle,
   Cloud, Server, Cpu, HardDrive, Wifi, Lock, AlertTriangle, BookOpen
 } from 'lucide-react';
 import LoginForm from './LoginForm';
@@ -65,7 +65,7 @@ const EnhancedAdminPanel: React.FC = () => {
     {
       id: '1',
       title: 'طلب جديد',
-      message: 'تم استلام طلب جديد من أحمد محمد',
+      message: 'تم استلام طلب جديد من أحم�� محمد',
       type: 'info',
       time: 'منذ دقيقتين',
       read: false
