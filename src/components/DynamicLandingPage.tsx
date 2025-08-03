@@ -45,7 +45,7 @@ const loadPageContent = () => {
       logo: 'KYCtrust',
       items: [
         { label: 'الرئيسية', url: '#home', active: true },
-        { label: 'خدماتنا', url: '#services', active: true },
+        { label: 'خدم��تنا', url: '#services', active: true },
         { label: 'من نحن', url: '#about', active: true },
         { label: 'آراء العملاء', url: '#testimonials', active: true },
         { label: 'تواصل معنا', url: '#contact', active: true }
@@ -246,8 +246,8 @@ const DynamicLandingPage: React.FC = () => {
 
               {/* Controls */}
               <div className="flex items-center space-x-4 space-x-reverse">
-                <ThemeToggle />
-                <LanguageToggle />
+                <SuperThemeToggle />
+                <SuperLanguageToggle />
                 
                 <button
                   onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
