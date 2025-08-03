@@ -1,5 +1,6 @@
 import { supabase } from '../lib/supabase';
 import { errorHandlers } from '../utils/errorHandler';
+import { showErrorToast, showSuccessToast } from '../utils/errorToast';
 
 export interface LandingPageSection {
   id: string;
