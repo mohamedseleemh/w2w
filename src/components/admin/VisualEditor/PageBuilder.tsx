@@ -7,7 +7,7 @@ import {
   Video, Quote, Star, CreditCard, Users, Calendar
 } from 'lucide-react';
 import { useTheme } from '../../../context/ThemeContext';
-import { useCustomization } from '../../../context/CustomizationContext';
+import { useCustomization, type PageElement } from '../../../context/CustomizationContext';
 import DragDropCanvas from './DragDropCanvas';
 import ComponentLibrary from './ComponentLibrary';
 import StyleEditor from './StyleEditor';
