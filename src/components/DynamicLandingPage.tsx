@@ -103,7 +103,7 @@ const loadPageContent = () => {
         {
           name: 'محمد خالد',
           role: 'مستثمر',
-          text: 'تجربة رائعة، خدمة عملاء متميزة ون��ائج سريعة ومضمونة',
+          text: 'تجربة رائعة، خدمة عملاء متميزة ون��ائ�� سريعة ومضمونة',
           rating: 5,
           image: '',
           company: 'صندوق الاستثمار'
@@ -416,14 +416,16 @@ const DynamicLandingPage: React.FC = () => {
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
                       خدمة متميزة تلبي احتياجاتك بأعلى معايير الجودة والأمان
                     </p>
-                    <EnhancedButton
+                    <SuperButton
                       variant="primary"
                       fullWidth
                       glow
                       onClick={() => handleServiceOrder(service)}
+                      animation="pulse"
+                      icon={<MessageCircle className="h-4 w-4" />}
                     >
                       اطلب الآن
-                    </EnhancedButton>
+                    </SuperButton>
                   </div>
                 </EnhancedCard>
               ))}
@@ -641,7 +643,7 @@ const DynamicLandingPage: React.FC = () => {
                 <form className="space-y-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      الاسم الكامل
+                      الاسم ��لكامل
                     </label>
                     <input
                       type="text"
