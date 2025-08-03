@@ -183,6 +183,8 @@ const EnhancedAdminPanel: React.FC = () => {
     switch (activeTab) {
       case 'dashboard':
         return <AdvancedDashboard />;
+      case 'landing-page':
+        return <LandingPageManager />;
       case 'visual-editor':
         return <VisualLandingEditor />;
       case 'services':
