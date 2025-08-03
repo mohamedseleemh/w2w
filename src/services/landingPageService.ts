@@ -61,12 +61,13 @@ export interface LandingCustomization {
 }
 
 export class LandingPageService {
-  private async _handleDbCall<T>(dbCall: Promise<{ data: T; error: any; }>, errorMessage: string): Promise<T> {
+  private async _handleDbCall<T>(dbCall: Promise<{ data: T; error: any; }>, errorMessage: string, context?: string): Promise<T> {
     try {
       const { data, error } = await dbCall;
       if (error) {
         const errorMsg = errorHandlers.extractErrorMessage(error);
         console.error(errorMessage, errorMsg);
+        // Don't show toast here - let the calling function decide
         throw new Error(errorMsg);
       }
       return data;
