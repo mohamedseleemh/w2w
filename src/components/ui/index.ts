@@ -18,3 +18,14 @@ export {
 // Super Components (Latest Enhanced Version)
 export { default as SuperThemeToggle } from './SuperThemeToggle';
 export { default as SuperLanguageToggle } from './SuperLanguageToggle';
+
+// Error Handling Components
+export {
+  default as ErrorDisplay,
+  NetworkError,
+  DatabaseError,
+  NotFoundError,
+  UnauthorizedError,
+  LoadingError,
+  SaveError
+} from './ErrorDisplay';
