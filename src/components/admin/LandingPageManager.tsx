@@ -3,7 +3,7 @@ import {
   Save, Eye, RefreshCw, Settings, Palette, Layout, 
   Monitor, Smartphone, Tablet, Plus, Edit3, Trash2,
   FileText, Image, Video, Type, Grid, Target, Star,
-  Upload, Download, Copy, RotateCcw, Publishing
+  Upload, Download, Copy, RotateCcw
 } from 'lucide-react';
 import { useCustomization } from '../../context/CustomizationContext';
 import { useData } from '../../context/DataContext';
@@ -100,7 +100,7 @@ export const LandingPageManager: React.FC = () => {
     stats: {
       enabled: true,
       items: [
-        { label: 'العملاء ال��اضين', value: 10000, icon: '👥' },
+        { label: 'العملاء الراضين', value: 10000, icon: '👥' },
         { label: 'المعاملات اليومية', value: 5000, icon: '💳' },
         { label: 'سنوات الخبرة', value: 15, icon: '⭐' },
         { label: 'الدول المخدومة', value: 25, icon: '🌍' }
@@ -227,7 +227,7 @@ export const LandingPageManager: React.FC = () => {
       setSiteContent({
         hero: {
           title: 'KYCtrust - خدمات التحقق الرقمية المتطورة',
-          subtitle: 'منصة رائدة في خدمات التحقق الرقمية والخد��ات المالية المتطورة مع تقنيات حديثة وأمان عالي',
+          subtitle: 'منصة رائدة في خدمات التحقق الرقمية والخدمات المالية المتطورة مع تقنيات حديثة وأمان عالي',
           buttonText: 'ابدأ الآن',
           backgroundImage: '',
           overlayColor: 'rgba(0, 0, 0, 0.4)'
@@ -313,7 +313,7 @@ export const LandingPageManager: React.FC = () => {
         const content = JSON.parse(e.target?.result as string);
         setSiteContent(content);
         setHasChanges(true);
-        toast.success('تم استيراد المحتوى بنجاح');
+        toast.success('تم استير��د المحتوى بنجاح');
       } catch (error) {
         toast.error('ملف غير صالح');
       }
@@ -563,7 +563,7 @@ export const LandingPageManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      ا��بريد الإلكتروني
+                      البريد الإلكتروني
                     </label>
                     <input
                       type="email"
