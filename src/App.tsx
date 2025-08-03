@@ -19,18 +19,8 @@ function App() {
     if (env.DEBUG_MODE) {
       // Error logging system initialized
 
-      // Test error logging if URL contains debug parameter
-      if (window.location.search.includes('debug-errors')) {
-        import('./utils/errorTest').then(({ testErrorLogging }) => {
-          setTimeout(testErrorLogging, 1000);
-        });
-      }
-
-      // Run trackEvent verification - DISABLED to prevent test errors
-      // Tests can be run manually using: quickFixTest() in console
-      // import('./utils/verifyTrackEventFix').then(({ quickFixTest }) => {
-      //   setTimeout(quickFixTest, 3000);
-      // });
+      // Debug mode enabled - error logging system initialized
+      console.log('🛠️ Debug mode active - enhanced error handling enabled');
     }
   }, []);
 
