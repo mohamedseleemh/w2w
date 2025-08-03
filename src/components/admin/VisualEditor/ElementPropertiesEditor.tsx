@@ -1,5 +1,5 @@
 import React from 'react';
-import { type PageElement } from './../VisualLandingEditor';
+import { type PageElement } from '../../../context/CustomizationContext';
 
 interface ElementPropertiesEditorProps {
   selectedElement: PageElement | null;
