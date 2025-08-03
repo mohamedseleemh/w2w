@@ -14,6 +14,9 @@ import LanguageToggle from './ui/LanguageToggle';
 import CounterAnimation from './animations/CounterAnimation';
 import SEOOptimizer from './optimization/SEOOptimizer';
 import PerformanceTracker from './optimization/PerformanceTracker';
+import EnhancedButton from './ui/EnhancedButton';
+import EnhancedCard from './ui/EnhancedCard';
+import WhatsAppButton from './ui/WhatsAppButton';
 import toast from 'react-hot-toast';
 
 // Load customizable content from localStorage or defaults
@@ -31,7 +34,7 @@ const loadPageContent = () => {
   return {
     hero: {
       title: 'KYCtrust - خدمات التحقق الرقمية المتطورة',
-      subtitle: 'منصة رائدة في خدمات التحقق الرقمية والخدمات المالي�� المتطورة مع تقنيات حديثة وأمان عالي',
+      subtitle: 'منصة رائدة في خدمات التحقق الرقمية والخدمات المالية المتطورة مع تقنيات حديثة وأمان عالي',
       buttonText: 'ابدأ الآن',
       secondaryButtonText: 'تعرف على المزيد',
       backgroundImage: '',
@@ -84,7 +87,7 @@ const loadPageContent = () => {
         {
           name: 'أحمد محمد',
           role: 'رجل أعمال',
-          text: 'خدمة ممتا��ة وسريعة، أنصح بها بشدة. فريق العمل محترف جداً',
+          text: 'خدمة ممتازة وسريعة، أنصح بها بشدة. فريق العمل محترف جداً',
           rating: 5,
           image: '',
           company: 'شركة التقنية المتقدمة'
@@ -95,7 +98,7 @@ const loadPageContent = () => {
           text: 'أفضل منصة للخدمات المالية الرقمية، أمان وسرعة لا مثيل لهما',
           rating: 5,
           image: '',
-          company: 'مجموعة الابتكار'
+          company: 'مجموعة ا��ابتكار'
         },
         {
           name: 'محمد خالد',
