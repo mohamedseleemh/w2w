@@ -32,6 +32,7 @@ type TabType =
   | 'dashboard'
   | 'landing-page'
   | 'visual-editor'
+  | 'section-manager'
   | 'media'
   | 'menu'
   | 'services'
@@ -82,7 +83,7 @@ const EnhancedAdminPanel: React.FC = () => {
       title: 'تحديث النظام',
       message: 'تم تحديث النظام بنجاح إلى الإصدار 2.1',
       type: 'success',
-      time: 'منذ ساعة',
+      time: 'م��ذ ساعة',
       read: false
     },
     {
@@ -123,7 +124,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'لوحة التحكم',
       icon: Shield,
       tabs: [
-        { id: 'dashboard' as TabType, name: 'لوحة الت��كم المتقدمة', icon: Activity, color: 'text-blue-600' },
+        { id: 'dashboard' as TabType, name: 'لوحة التحكم المتقدمة', icon: Activity, color: 'text-blue-600' },
         { id: 'analytics' as TabType, name: 'التحليلات والإحصائيات', icon: BarChart3, color: 'text-green-600' },
         { id: 'system-monitor' as TabType, name: 'مراقبة النظام', icon: Server, color: 'text-purple-600' }
       ]
@@ -362,7 +363,7 @@ const EnhancedAdminPanel: React.FC = () => {
                   المساعد الذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  س��تم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
+                  سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
                 </p>
                 <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   اشترك في الإشعارات
