@@ -83,7 +83,7 @@ const EnhancedAdminPanel: React.FC = () => {
       title: 'تحديث النظام',
       message: 'تم تحديث النظام بنجاح إلى الإصدار 2.1',
       type: 'success',
-      time: 'م��ذ ساعة',
+      time: 'منذ ساعة',
       read: false
     },
     {
@@ -134,6 +134,7 @@ const EnhancedAdminPanel: React.FC = () => {
       icon: Edit3,
       tabs: [
         { id: 'landing-page' as TabType, name: 'إدارة صفحة الهبوط', icon: Globe, color: 'text-blue-600' },
+        { id: 'section-manager' as TabType, name: 'إدارة الأقسام', icon: Layout, color: 'text-orange-600' },
         { id: 'visual-editor' as TabType, name: 'محرر الصفحة المرئي', icon: Layers, color: 'text-indigo-600' },
         { id: 'media' as TabType, name: 'إدارة الوسائط', icon: Image, color: 'text-green-600' },
         { id: 'menu' as TabType, name: 'إدارة القوائم', icon: Menu, color: 'text-purple-600' },
