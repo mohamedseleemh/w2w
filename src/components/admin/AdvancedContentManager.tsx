@@ -148,7 +148,7 @@ const AdvancedContentManager: React.FC = () => {
             description: 'نحن منصة متطورة تقدم خدمات التحقق الرقمي والحلول المالية بأعلى معايير الأمان والجودة. نفخر بخدمة آلاف العملاء حول العالم.',
             features: [
               { title: 'أمان عالي', description: 'حماية متقدمة لبياناتك', icon: 'shield' },
-              { title: 'سرعة ف�� التنفيذ', description: 'معالجة فورية للطلبات', icon: 'zap' },
+              { title: 'سرعة في التنفيذ', description: 'معالجة فورية للطلبات', icon: 'zap' },
               { title: 'دعم فني 24/7', description: 'فريق دعم متاح دائماً', icon: 'clock' },
               { title: 'واجهات سهلة', description: 'تجربة مستخدم متميزة', icon: 'users' }
             ],
@@ -186,7 +186,7 @@ const AdvancedContentManager: React.FC = () => {
               {
                 name: 'فاطمة علي',
                 role: 'مديرة مشاريع',
-                text: 'أفضل منصة للخدمات المالية الرقمية، أمان وسرعة لا مثيل لهما',
+                text: 'أفضل منصة للخدمات المالية الرقمية، أمان و��رعة لا مثيل لهما',
                 rating: 5,
                 image: '',
                 company: 'مجموعة الابتكار'
@@ -214,7 +214,7 @@ const AdvancedContentManager: React.FC = () => {
             title: 'تواصل معنا',
             subtitle: 'نحن هنا لمساعدتك في أي وقت',
             address: 'الرياض، المملكة العربية السعودية',
-            phone: '+966501234567',
+            phone: '+201062453344',
             email: 'info@kyctrust.com',
             workingHours: 'الأحد - الخميس: 9:00 ص - 6:00 م',
             socialLinks: {
@@ -274,7 +274,7 @@ const AdvancedContentManager: React.FC = () => {
     setIsPublishing(true);
     try {
       saveContent(content);
-      toast.success('تم نشر التغييرات بنجاح! ستظهر في الصفحة فور��ً.');
+      toast.success('تم نشر التغييرات بنجاح! ستظهر في الصفحة فوراً.');
       
       // Refresh the preview
       setTimeout(() => {
@@ -732,7 +732,7 @@ const AdvancedContentManager: React.FC = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                      البريد الإلكتروني
+                      الب��يد الإلكتروني
                     </label>
                     <input
                       type="email"
