@@ -161,31 +161,53 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
   useEffect(() => {
     const loadCustomization = async () => {
       setLoading(true);
+      setError(null);
+
       try {
-        const template = await landingPageService.getActiveLandingPageTemplate();
-        if (template && template.template_data && template.template_data.length > 0) {
-          const pageData = template.template_data[0] as any;
-          setCustomization({
-            hero: pageData.hero || defaultCustomization.hero,
-            globalSettings: pageData.styles || defaultCustomization.globalSettings,
-            pageElements: pageData.elements || [],
-            pageLayout: pageData.settings || defaultCustomization.pageLayout,
-          });
+        // First try to load from localStorage as fallback
+        const localCustomization = localStorage.getItem('kyctrust_customization');
+        if (localCustomization) {
+          try {
+            const parsed = JSON.parse(localCustomization);
+            setCustomization({
+              hero: parsed.hero || defaultCustomization.hero,
+              globalSettings: parsed.globalSettings || defaultCustomization.globalSettings,
+              pageElements: parsed.pageElements || defaultCustomization.pageElements,
+              pageLayout: parsed.pageLayout || defaultCustomization.pageLayout,
+            });
+          } catch (parseError) {
+            console.warn('Failed to parse local customization, using defaults');
+            setCustomization(defaultCustomization);
+          }
         } else {
-          // If no template in DB, use default and save it
-          await landingPageService.savePageTemplate({
-            name: 'Default Landing Page',
-            page_type: 'landing',
-            template_data: [defaultCustomization],
-            theme_config: defaultCustomization.globalSettings,
-            is_default: true,
-            active: true,
-          });
           setCustomization(defaultCustomization);
         }
+
+        // Then try to load from database and update if available
+        try {
+          const template = await landingPageService.getActiveLandingPageTemplate();
+          if (template && template.template_data && template.template_data.length > 0) {
+            const pageData = template.template_data[0] as any;
+            const dbCustomization = {
+              hero: pageData.hero || defaultCustomization.hero,
+              globalSettings: pageData.styles || defaultCustomization.globalSettings,
+              pageElements: pageData.elements || defaultCustomization.pageElements,
+              pageLayout: pageData.settings || defaultCustomization.pageLayout,
+            };
+            setCustomization(dbCustomization);
+            // Update localStorage with DB data
+            localStorage.setItem('kyctrust_customization', JSON.stringify(dbCustomization));
+          }
+        } catch (dbError) {
+          console.warn('Failed to load from database, using cached/default data:', dbError);
+          // Don't throw here, we already have fallback data loaded
+        }
+
       } catch (err) {
-        setError('فشل في تحميل بيانات التخصيص');
         console.error('Error loading customization:', err);
+        setError('فشل في تحميل بيانات التخصيص - تم استخدام الإعدادات الافتراضية');
+        // Use default customization even if there's an error
+        setCustomization(defaultCustomization);
       } finally {
         setLoading(false);
       }
