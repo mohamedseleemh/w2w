@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
-import LandingPage from './components/LandingPage';
+import DynamicLandingPage from './components/DynamicLandingPage';
 import EnhancedAdminPanel from './components/admin/EnhancedAdminPanel';
 import { DataProvider } from './context/DataContext';
 import { ThemeProvider } from './context/ThemeContext';
