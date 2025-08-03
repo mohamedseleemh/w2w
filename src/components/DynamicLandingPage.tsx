@@ -31,7 +31,7 @@ const loadPageContent = () => {
   return {
     hero: {
       title: 'KYCtrust - خدمات التحقق الرقمية المتطورة',
-      subtitle: 'منصة رائدة في خدمات التحقق الرقمية والخدمات المالية المتطورة مع تقنيات حديثة وأمان عالي',
+      subtitle: 'منصة رائدة في خدمات التحقق الرقمية والخدمات المالي�� المتطورة مع تقنيات حديثة وأمان عالي',
       buttonText: 'ابدأ الآن',
       secondaryButtonText: 'تعرف على المزيد',
       backgroundImage: '',
@@ -84,7 +84,7 @@ const loadPageContent = () => {
         {
           name: 'أحمد محمد',
           role: 'رجل أعمال',
-          text: 'خدمة ممتازة وسريعة، أنصح بها بشدة. فريق العمل محترف جداً',
+          text: 'خدمة ممتا��ة وسريعة، أنصح بها بشدة. فريق العمل محترف جداً',
           rating: 5,
           image: '',
           company: 'شركة التقنية المتقدمة'
@@ -100,7 +100,7 @@ const loadPageContent = () => {
         {
           name: 'محمد خالد',
           role: 'مستثمر',
-          text: 'تجربة رائعة، خدمة عملاء متميزة ونتائج سريعة ومضمونة',
+          text: 'تجربة رائعة، خدمة عملاء متميزة ون��ائج سريعة ومضمونة',
           rating: 5,
           image: '',
           company: 'صندوق الاستثمار'
@@ -120,7 +120,7 @@ const loadPageContent = () => {
       title: 'تواصل معنا',
       subtitle: 'نحن هنا لمساعدتك في أي وقت',
       address: 'الرياض، المملكة العربية السعودية',
-      phone: '+966501234567',
+      phone: '+201062453344',
       email: 'info@kyctrust.com',
       workingHours: 'الأحد - الخميس: 9:00 ص - 6:00 م',
       socialLinks: {
@@ -206,7 +206,7 @@ const DynamicLandingPage: React.FC = () => {
       <SEOOptimizer 
         title={pageContent.hero.title}
         description={pageContent.hero.subtitle}
-        keywords="KYC, الت��قق الرقمي, الخدمات المالية, الأمان الرقمي, التكنولوجيا المالية"
+        keywords="KYC, التحقق الرقمي, الخدمات المالية, الأمان الرقمي, التكنولوجيا المالية"
       />
       <PerformanceTracker />
 
@@ -640,7 +640,7 @@ const DynamicLandingPage: React.FC = () => {
                     className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300 flex items-center justify-center"
                   >
                     <Send className="h-5 w-5 mr-2" />
-                    إرسال الرسالة
+                    إر��ال الرسالة
                   </button>
                 </form>
               </div>
