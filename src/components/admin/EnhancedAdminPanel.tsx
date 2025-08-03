@@ -193,6 +193,10 @@ const EnhancedAdminPanel: React.FC = () => {
         return <LandingPageManager />;
       case 'visual-editor':
         return <VisualLandingEditor />;
+      case 'media':
+        return <MediaManager />;
+      case 'menu':
+        return <MenuManager />;
       case 'services':
         return <ServicesManager />;
       case 'services-layout':
@@ -291,7 +295,7 @@ const EnhancedAdminPanel: React.FC = () => {
               </div>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-                  ��لتهديدات المحتملة
+                  التهديدات المحتملة
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-reverse space-x-3">
@@ -357,7 +361,7 @@ const EnhancedAdminPanel: React.FC = () => {
                   المساعد الذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
+                  سيتم تفعيل المساعد ا��ذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
                 </p>
                 <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   اشترك في الإشعارات
