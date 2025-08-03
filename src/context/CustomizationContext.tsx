@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import toast from 'react-hot-toast';
+import { landingPageService } from '../services/landingPageService';
 
 export interface HeroSection {
   title: string;
@@ -82,7 +83,7 @@ const defaultCustomization: CustomizationData = {
     titleGradient: 'المالية الرقمية',
     subtitle: 'نحن نعيد تعريف الخدمات المالية الرقمية من خلال تقديم حلول مبتكرة وآمنة ومتطورة تلبي احتياجاتك المالية بكفاءة عالية وموثوقية استثنائية',
     button1Text: 'ابدأ رحلتك معنا',
-    button2Text: 'استكشف الخدمات',
+    button2Text: '��ستكشف الخدمات',
     badgeText: 'منصة رائدة في الخدمات المالية الرقمية',
     showStats: true,
     statsData: {
