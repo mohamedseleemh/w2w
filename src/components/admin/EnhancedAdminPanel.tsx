@@ -127,6 +127,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'تصميم المحتوى',
       icon: Edit3,
       tabs: [
+        { id: 'landing-page' as TabType, name: 'إدارة صفحة الهبوط', icon: Globe, color: 'text-blue-600' },
         { id: 'visual-editor' as TabType, name: 'محرر الصفحة المرئي', icon: Layers, color: 'text-indigo-600' },
         { id: 'themes' as TabType, name: 'إدارة الثيمات', icon: Paintbrush, color: 'text-red-600' },
         { id: 'templates' as TabType, name: 'مكتبة القوالب', icon: BookOpen, color: 'text-teal-600' }
@@ -345,7 +346,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="text-center">
                 <Star className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  المساعد الذكي غير متاح حالياً
+                  المساعد الذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
