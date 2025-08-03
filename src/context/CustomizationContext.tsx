@@ -355,6 +355,7 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       );
       await updatePageElements(newElements);
     } catch (error) {
+      console.error('Error updating page element:', error);
       throw new Error('فشل في تحديث العنصر');
     }
   };
