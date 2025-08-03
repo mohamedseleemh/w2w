@@ -365,6 +365,7 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       const newElements = customization.pageElements.filter(el => el.id !== id);
       await updatePageElements(newElements);
     } catch (error) {
+      console.error('Error deleting page element:', error);
       throw new Error('فشل في حذف العنصر');
     }
   };
