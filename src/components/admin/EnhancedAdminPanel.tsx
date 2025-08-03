@@ -23,6 +23,8 @@ import ReportsManager from './ReportsManager';
 import { BackupManager } from './BackupManager';
 import { TemplatesManager } from './TemplatesManager';
 import LandingPageManager from './LandingPageManager';
+import MediaManager from './MediaManager';
+import MenuManager from './MenuManager';
 import { useData } from '../../context/DataContext';
 
 type TabType =
