@@ -343,7 +343,8 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       const newElements = [...customization.pageElements, element];
       await updatePageElements(newElements);
     } catch (error) {
-      throw new Error('فشل في إضافة الع��صر');
+      console.error('Error adding page element:', error);
+      throw new Error('فشل في إضافة العنصر');
     }
   };
 
