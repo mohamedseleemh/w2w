@@ -25,6 +25,7 @@ import { TemplatesManager } from './TemplatesManager';
 import AdvancedContentManager from './AdvancedContentManager';
 import MediaManager from './MediaManager';
 import MenuManager from './MenuManager';
+import SectionManager from './SectionManager';
 import { useData } from '../../context/DataContext';
 
 type TabType =
@@ -122,7 +123,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'لوحة التحكم',
       icon: Shield,
       tabs: [
-        { id: 'dashboard' as TabType, name: 'لوحة التحكم المتقدمة', icon: Activity, color: 'text-blue-600' },
+        { id: 'dashboard' as TabType, name: 'لوحة الت��كم المتقدمة', icon: Activity, color: 'text-blue-600' },
         { id: 'analytics' as TabType, name: 'التحليلات والإحصائيات', icon: BarChart3, color: 'text-green-600' },
         { id: 'system-monitor' as TabType, name: 'مراقبة النظام', icon: Server, color: 'text-purple-600' }
       ]
@@ -271,7 +272,7 @@ const EnhancedAdminPanel: React.FC = () => {
         return (
           <div className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              الأمان وال��ماية
+              الأمان والحماية
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
@@ -361,7 +362,7 @@ const EnhancedAdminPanel: React.FC = () => {
                   المساعد الذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
+                  س��تم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
                 </p>
                 <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   اشترك في الإشعارات
