@@ -122,7 +122,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'لوحة التحكم',
       icon: Shield,
       tabs: [
-        { id: 'dashboard' as TabType, name: 'لوحة التحكم المتقدم��', icon: Activity, color: 'text-blue-600' },
+        { id: 'dashboard' as TabType, name: 'لوحة التحكم المتقدمة', icon: Activity, color: 'text-blue-600' },
         { id: 'analytics' as TabType, name: 'التحليلات والإحصائيات', icon: BarChart3, color: 'text-green-600' },
         { id: 'system-monitor' as TabType, name: 'مراقبة النظام', icon: Server, color: 'text-purple-600' }
       ]
@@ -133,6 +133,8 @@ const EnhancedAdminPanel: React.FC = () => {
       tabs: [
         { id: 'landing-page' as TabType, name: 'إدارة صفحة الهبوط', icon: Globe, color: 'text-blue-600' },
         { id: 'visual-editor' as TabType, name: 'محرر الصفحة المرئي', icon: Layers, color: 'text-indigo-600' },
+        { id: 'media' as TabType, name: 'إدارة الوسائط', icon: Image, color: 'text-green-600' },
+        { id: 'menu' as TabType, name: 'إدارة القوائم', icon: Menu, color: 'text-purple-600' },
         { id: 'themes' as TabType, name: 'إدارة الثيمات', icon: Paintbrush, color: 'text-red-600' },
         { id: 'templates' as TabType, name: 'مكتبة القوالب', icon: BookOpen, color: 'text-teal-600' }
       ]
@@ -289,7 +291,7 @@ const EnhancedAdminPanel: React.FC = () => {
               </div>
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
                 <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-white">
-                  التهديدات المحتملة
+                  ��لتهديدات المحتملة
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center space-x-reverse space-x-3">
