@@ -27,7 +27,7 @@ import EnhancedSettingsManager from './EnhancedSettingsManager';
 import EnhancedPaymentMethodsManager from './EnhancedPaymentMethodsManager';
 import { BackupManager } from './BackupManager';
 import { AnalyticsPanel } from './AnalyticsPanel';
-import ServicesManager from './ServicesManager';
+import RealServicesManager from './RealServicesManager';
 import RealOrdersManager from './RealOrdersManager';
 
 interface DashboardMetrics {
@@ -102,7 +102,7 @@ const UltraAdminPanel: React.FC = () => {
     },
     {
       id: '3',
-      title: 'تحذير النظام',
+      title: 'تحذير ��لنظام',
       message: 'استخدام الذاكرة وصل إلى 85%',
       type: 'warning',
       time: 'منذ 30 دقيقة',
@@ -128,7 +128,7 @@ const UltraAdminPanel: React.FC = () => {
       items: [
         { id: 'content', title: 'المحتوى', icon: FileText, description: 'إدارة وتحرير المحتوى', color: 'from-orange-500 to-red-500' },
         { id: 'services', title: 'الخدمات', icon: Package, description: 'إضافة وإدارة الخدمات', color: 'from-indigo-500 to-purple-500' },
-        { id: 'media', title: 'الوسائط', icon: ImageIcon, description: 'مكتبة الصور والفيديوها��', color: 'from-teal-500 to-cyan-500' }
+        { id: 'media', title: 'الوسائط', icon: ImageIcon, description: 'مكتبة الصور والفيديوهات', color: 'from-teal-500 to-cyan-500' }
       ]
     },
     {
@@ -240,7 +240,7 @@ const UltraAdminPanel: React.FC = () => {
       case 'content':
         return <RealContentManager />;
       case 'services':
-        return <ServicesManager />;
+        return <RealServicesManager />;
       case 'orders':
         return <RealOrdersManager />;
       case 'payments':
