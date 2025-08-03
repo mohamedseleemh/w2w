@@ -28,7 +28,7 @@ import EnhancedPaymentMethodsManager from './EnhancedPaymentMethodsManager';
 import { BackupManager } from './BackupManager';
 import { AnalyticsPanel } from './AnalyticsPanel';
 import ServicesManager from './ServicesManager';
-import OrdersManager from './OrdersManager';
+import RealOrdersManager from './RealOrdersManager';
 
 interface DashboardMetrics {
   totalUsers: number;
@@ -103,7 +103,7 @@ const UltraAdminPanel: React.FC = () => {
     {
       id: '3',
       title: 'تحذير النظام',
-      message: '��ستخدام الذاكرة وصل إلى 85%',
+      message: 'استخدام الذاكرة وصل إلى 85%',
       type: 'warning',
       time: 'منذ 30 دقيقة',
       read: true
@@ -128,7 +128,7 @@ const UltraAdminPanel: React.FC = () => {
       items: [
         { id: 'content', title: 'المحتوى', icon: FileText, description: 'إدارة وتحرير المحتوى', color: 'from-orange-500 to-red-500' },
         { id: 'services', title: 'الخدمات', icon: Package, description: 'إضافة وإدارة الخدمات', color: 'from-indigo-500 to-purple-500' },
-        { id: 'media', title: 'الوسائط', icon: ImageIcon, description: 'مكتبة الصور والفيديوهات', color: 'from-teal-500 to-cyan-500' }
+        { id: 'media', title: 'الوسائط', icon: ImageIcon, description: 'مكتبة الصور والفيديوها��', color: 'from-teal-500 to-cyan-500' }
       ]
     },
     {
@@ -194,7 +194,7 @@ const UltraAdminPanel: React.FC = () => {
 
   const statCards = [
     {
-      title: 'إجما��ي المستخدمين',
+      title: 'إجمالي المستخدمين',
       value: metrics.totalUsers.toLocaleString(),
       change: '+12.3%',
       trend: 'up',
@@ -242,7 +242,7 @@ const UltraAdminPanel: React.FC = () => {
       case 'services':
         return <ServicesManager />;
       case 'orders':
-        return <OrdersManager />;
+        return <RealOrdersManager />;
       case 'payments':
         return <EnhancedPaymentMethodsManager />;
       case 'settings':
