@@ -22,6 +22,7 @@ import UsersManager from './UsersManager';
 import ReportsManager from './ReportsManager';
 import { BackupManager } from './BackupManager';
 import { TemplatesManager } from './TemplatesManager';
+import LandingPageManager from './LandingPageManager';
 import { useData } from '../../context/DataContext';
 
 type TabType = 
@@ -417,7 +418,7 @@ const EnhancedAdminPanel: React.FC = () => {
                 <Search className="absolute right-3 top-3 h-4 w-4 text-gray-400" />
                 <input
                   type="text"
-                  placeholder="البحث في لوحة التحكم..."
+                  placeholder="البحث في لوحة ال��حكم..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   className="w-full pr-10 pl-4 py-2 border border-gray-300 dark:border-gray-600 rounded-lg bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent"
