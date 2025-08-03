@@ -43,6 +43,7 @@ export const DragDropManager: React.FC = () => {
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<DragDropItem>>({});
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [showAddForm, setShowAddForm] = useState(false);
   
   const initializeCategories = React.useCallback(() => {
     // Convert services to drag and drop items
@@ -422,7 +423,7 @@ export const DragDropManager: React.FC = () => {
             </div>
             <div>
               <p className="text-sm font-medium text-purple-900 dark:text-purple-100">
-                المحددة
+                المحدد��
               </p>
               <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                 {selectedCount}
