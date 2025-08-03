@@ -43,7 +43,6 @@ export const DragDropManager: React.FC = () => {
   const [isEditing, setIsEditing] = useState<string | null>(null);
   const [editForm, setEditForm] = useState<Partial<DragDropItem>>({});
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-  const [showAddForm, setShowAddForm] = useState(false);
   
   const initializeCategories = React.useCallback(() => {
     // Convert services to drag and drop items
@@ -169,7 +168,7 @@ export const DragDropManager: React.FC = () => {
     setCategories(newCategories);
     setDragOverCategory(null);
     
-    toast.success(`��م نقل "${item.name}" إل�� "${targetCategory.name}"`);
+    toast.success(`تم نقل "${item.name}" إل�� "${targetCategory.name}"`);
   };
 
   const handleItemAction = (action: 'edit' | 'delete' | 'toggle' | 'duplicate' | 'feature', item: DragDropItem) => {
