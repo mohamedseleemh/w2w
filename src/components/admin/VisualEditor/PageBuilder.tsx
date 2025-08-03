@@ -15,23 +15,6 @@ import ThemeSelector from './ThemeSelector';
 import PreviewMode from './PreviewMode';
 import toast from 'react-hot-toast';
 
-export interface PageElement {
-  id: string;
-  type: 'hero' | 'services' | 'features' | 'testimonials' | 'stats' | 'cta' | 'text' | 'image' | 'video';
-  position: { x: number; y: number };
-  size: { width: number; height: number };
-  content: any;
-  styles: {
-    backgroundColor?: string;
-    textColor?: string;
-    borderRadius?: number;
-    padding?: number;
-    margin?: number;
-    animation?: string;
-  };
-  visible: boolean;
-  order: number;
-}
 
 export interface PageTheme {
   id: string;
