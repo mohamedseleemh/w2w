@@ -470,29 +470,37 @@ const DynamicLandingPage: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {pageContent.testimonials.items.map((testimonial, index) => (
-                <div key={index} className="bg-white dark:bg-gray-900 rounded-xl shadow-lg p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    "{testimonial.text}"
-                  </p>
-                  <div className="flex items-center">
-                    <div className="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center text-lg font-semibold">
-                      {testimonial.name.charAt(0)}
+                <EnhancedCard
+                  key={index}
+                  variant="glass"
+                  hover
+                  glow
+                  className="backdrop-blur-sm"
+                >
+                  <div className="p-6">
+                    <div className="flex items-center mb-4">
+                      {[...Array(testimonial.rating)].map((_, i) => (
+                        <Star key={i} className="h-5 w-5 text-yellow-400 fill-current" />
+                      ))}
                     </div>
-                    <div className="mr-4">
-                      <div className="font-semibold text-gray-900 dark:text-white">
-                        {testimonial.name}
+                    <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
+                      "{testimonial.text}"
+                    </p>
+                    <div className="flex items-center">
+                      <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full flex items-center justify-center text-lg font-semibold">
+                        {testimonial.name.charAt(0)}
                       </div>
-                      <div className="text-sm text-gray-600 dark:text-gray-400">
-                        {testimonial.role} - {testimonial.company}
+                      <div className="mr-4">
+                        <div className="font-semibold text-gray-900 dark:text-white">
+                          {testimonial.name}
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          {testimonial.role} - {testimonial.company}
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </EnhancedCard>
               ))}
             </div>
           </div>
