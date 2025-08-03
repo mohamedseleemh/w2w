@@ -177,7 +177,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'الإعدادات المتقدمة',
       icon: Settings,
       tabs: [
-        { id: 'settings' as TabType, name: 'إعدادات ��لموقع', icon: Settings, color: 'text-blue-600' },
+        { id: 'settings' as TabType, name: 'إعدادات الموقع', icon: Settings, color: 'text-blue-600' },
         { id: 'integrations' as TabType, name: 'التكاملات الخارجية', icon: Globe, color: 'text-green-600' },
         { id: 'ai-assistant' as TabType, name: 'المساعد الذكي', icon: Star, color: 'text-purple-600' },
         { id: 'workflow' as TabType, name: 'سير العمل الآلي', icon: Zap, color: 'text-orange-600' }
@@ -190,7 +190,7 @@ const EnhancedAdminPanel: React.FC = () => {
       case 'dashboard':
         return <AdvancedDashboard />;
       case 'landing-page':
-        return <LandingPageManager />;
+        return <AdvancedContentManager />;
       case 'visual-editor':
         return <VisualLandingEditor />;
       case 'media':
@@ -271,7 +271,7 @@ const EnhancedAdminPanel: React.FC = () => {
         return (
           <div className="p-8">
             <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-              الأمان والحماية
+              الأمان وال��ماية
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
