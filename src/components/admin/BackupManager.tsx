@@ -173,8 +173,6 @@ export const BackupManager: React.FC = () => {
     }
   };
 
-
-
   const restoreBackup = async (backupId: string) => {
     if (!confirm('هل أنت متأكد من استعادة هذه النسخة؟ سيتم استبدال البيانات الحالية.')) {
       return;
