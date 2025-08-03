@@ -64,30 +64,48 @@ export class LandingPageService {
     try {
       const { data, error } = await dbCall;
       if (error) {
-        throw error;
+        const errorMsg = errorHandlers.extractErrorMessage(error);
+        console.error(errorMessage, errorMsg);
+        throw new Error(errorMsg);
       }
       return data;
     } catch (error) {
-      console.error(errorMessage, error);
-      throw errorHandlers.extractErrorMessage(error);
+      if (error instanceof Error) {
+        throw error;
+      }
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.error(errorMessage, errorMsg);
+      throw new Error(errorMsg);
     }
   }
 
   // Page Templates Operations
   async getPageTemplates(pageType: string = 'landing'): Promise<PageTemplate[]> {
-    const { data, error } = await supabase
-        .from('page_templates')
-        .select('*')
-        .eq('page_type', pageType)
-        .eq('active', true)
-        .order('created_at', { ascending: false });
+    try {
+      if (!supabase) {
+        console.warn('Database not available, returning empty templates');
+        return [];
+      }
 
-    if (error) {
-      console.warn('Database error fetching page templates:', errorHandlers.extractErrorMessage(error));
+      const { data, error } = await supabase
+          .from('page_templates')
+          .select('*')
+          .eq('page_type', pageType)
+          .eq('active', true)
+          .order('created_at', { ascending: false });
+
+      if (error) {
+        const errorMsg = errorHandlers.extractErrorMessage(error);
+        console.warn('Database error fetching page templates:', errorMsg);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.warn('Failed to fetch page templates:', errorMsg);
       return [];
     }
-
-    return data || [];
   }
 
   async savePageTemplate(template: Omit<PageTemplate, 'id' | 'created_at' | 'updated_at'>, isDefault: boolean = false): Promise<PageTemplate> {
