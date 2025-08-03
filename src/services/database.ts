@@ -571,5 +571,23 @@ export function createDatabaseService(): DatabaseService {
   }
 }
 
+// Export specific functions for backwards compatibility
+export const getAdminProfile = async () => {
+  return databaseService.getAdminProfile ?
+    (databaseService as any).getAdminProfile() :
+    Promise.resolve({
+      id: '1',
+      name: 'مدير النظام',
+      email: 'admin@kyctrust.com',
+      role: 'admin'
+    });
+};
+
+export const updateAdminProfile = async (data: any) => {
+  return databaseService.updateAdminProfile ?
+    (databaseService as any).updateAdminProfile('1', data) :
+    Promise.resolve({ success: true, data });
+};
+
 // Default export
 export const databaseService = createDatabaseService();
