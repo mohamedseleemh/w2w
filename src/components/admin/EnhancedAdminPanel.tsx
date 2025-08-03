@@ -22,7 +22,7 @@ import UsersManager from './UsersManager';
 import ReportsManager from './ReportsManager';
 import { BackupManager } from './BackupManager';
 import { TemplatesManager } from './TemplatesManager';
-import LandingPageManager from './LandingPageManager';
+import AdvancedContentManager from './AdvancedContentManager';
 import MediaManager from './MediaManager';
 import MenuManager from './MenuManager';
 import { useData } from '../../context/DataContext';
@@ -177,7 +177,7 @@ const EnhancedAdminPanel: React.FC = () => {
       name: 'الإعدادات المتقدمة',
       icon: Settings,
       tabs: [
-        { id: 'settings' as TabType, name: 'إعدادات الموقع', icon: Settings, color: 'text-blue-600' },
+        { id: 'settings' as TabType, name: 'إعدادات ��لموقع', icon: Settings, color: 'text-blue-600' },
         { id: 'integrations' as TabType, name: 'التكاملات الخارجية', icon: Globe, color: 'text-green-600' },
         { id: 'ai-assistant' as TabType, name: 'المساعد الذكي', icon: Star, color: 'text-purple-600' },
         { id: 'workflow' as TabType, name: 'سير العمل الآلي', icon: Zap, color: 'text-orange-600' }
@@ -258,7 +258,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">حالة ��لخادم</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">حالة الخادم</p>
                     <p className="text-2xl font-bold text-green-600">متصل</p>
                   </div>
                   <Server className="h-8 w-8 text-green-600" />
@@ -358,7 +358,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="text-center">
                 <Star className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  المساعد ��لذكي غير متاح حالي��ً
+                  المساعد الذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
