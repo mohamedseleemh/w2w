@@ -1,0 +1,11 @@
+# Redirects for Single Page Application (SPA)
+# This handles client-side routing for React Router
+
+# Admin panel routes - make sure they serve the SPA
+/admin/* /index.html 200
+
+# API routes - if using serverless functions
+/api/* /.netlify/functions/:splat 200
+
+# All other routes - catch-all for React Router
+/* /index.html 200

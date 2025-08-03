@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  kyctrust-web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - kyctrust-network
+
+  # Optional: Add a reverse proxy for SSL termination
+  nginx-proxy:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+      - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - kyctrust-web
+    networks:
+      - kyctrust-network
+    profiles:
+      - production
+
+networks:
+  kyctrust-network:
+    driver: bridge
+
+volumes:
+  ssl_certs:
+    external: true

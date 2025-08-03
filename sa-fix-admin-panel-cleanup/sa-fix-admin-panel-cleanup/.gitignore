@@ -1,0 +1,160 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment Variables | متغيرات البيئة
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs | مخرجات البناء
+dist/
+build/
+out/
+
+# Cache directories | مجلدات التخزين المؤقت
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+
+# Runtime data | بيانات وقت التشغيل
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs | السجلات
+logs
+*.log
+lerna-debug.log*
+
+# Coverage directory used by tools like istanbul | مجلد التغطية
+coverage/
+*.lcov
+.nyc_output
+
+# ESLint cache | تخزين ESLint الم��قت
+.eslintcache
+
+# TypeScript cache | تخزين TypeScript المؤقت
+*.tsbuildinfo
+
+# Optional npm cache directory | مجلد npm المؤقت الاختياري
+.npm
+
+# Optional REPL history | تاريخ REPL الاختياري
+.node_repl_history
+
+# Output of 'npm pack' | مخرجات 'npm pack'
+*.tgz
+
+# Yarn Integrity file | ملف Yarn Integrity
+.yarn-integrity
+
+# dotenv environment variable files | ملفات متغيرات البيئة dotenv
+.env.test
+
+# Stores VSCode versions used for testing VSCode extensions | يخزن إصدارات VSCode
+.vscode-test
+
+# IDE files | ملفات IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files | ملفات النظام
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary folders | المجلدات المؤقتة
+tmp/
+temp/
+
+# Runtime configuration | إعدادات وقت التشغيل
+.env.runtime
+
+# Local development files | ملفات التطوير المحلية
+.env.dev
+.env.staging
+
+# Database files | ملفات قاعدة البيانات
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup files | ملفات النسخ الاحتياطية
+*.backup
+*.bak
+
+# Performance reports | تقارير الأداء
+performance-report.html
+lighthouse-report.html
+
+# Bundle analyzer reports | تقارير محلل الحزم
+bundle-report.html
+stats.json
+
+# Vercel deployment files | ملفات نشر Vercel
+.vercel
+
+# Netlify deployment files | ملفات نشر Netlify
+.netlify
+
+# Firebase deployment files | ملفات نشر Firebase
+.firebase
+
+# Local SSL certificates | شهادات SSL المحلية
+*.pem
+*.key
+*.crt
+*.cert
+
+# Docker files | ملفات Docker
+docker-compose.override.yml
+.dockerignore
+
+# Kubernetes files | ملفات Kubernetes
+*.yaml.local
+*.yml.local
+
+# Terraform files | ملفات Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Security files | ملفات الأمان
+secrets/
+private/
+confidential/
+
+# Test files | ملفات الاختبار
+test-results/
+screenshots/
+videos/
+
+# Documentation build | بناء الوثائق
+docs/dist/
+docs/build/
+
+# Storybook build outputs | مخرجات Storybook
+storybook-static/
+
+# Temporary files | ملفات مؤقتة
+*.tmp
+*.temp
+.temp/
+.tmp/
