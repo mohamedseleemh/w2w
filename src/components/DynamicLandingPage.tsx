@@ -53,7 +53,7 @@ const loadPageContent = () => {
     },
     about: {
       title: 'من نحن',
-      subtitle: 'رواد في عالم الخدمات المالية الرقمية',
+      subtitle: 'رواد في عا��م الخدمات المالية الرقمية',
       description: 'نحن منصة متطورة تقدم خدمات التحقق الرقمي والحلول المالية بأعلى معايير الأمان والجودة. نفخر بخدمة آلاف العملاء حول العالم.',
       features: [
         { title: 'أمان عالي', description: 'حماية متقدمة لبياناتك', icon: 'shield' },
@@ -113,7 +113,7 @@ const loadPageContent = () => {
     },
     cta: {
       title: 'ابدأ رحلتك معنا اليوم',
-      subtitle: 'ان��م إلى آلاف العملاء الراضين واحصل على أفضل الخدمات المالية الرقمية',
+      subtitle: 'انضم إلى آلاف العملاء الراضين واحصل على أفضل الخدمات المالية الرقمية',
       buttonText: 'ابدأ الآن',
       secondaryButtonText: 'تواصل معنا',
       backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -513,19 +513,25 @@ const DynamicLandingPage: React.FC = () => {
               {pageContent.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button
+              <EnhancedButton
+                variant="primary"
+                size="lg"
+                glow
+                elevation
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                className="px-8 py-4 bg-white text-blue-600 hover:bg-gray-100 font-semibold rounded-xl transition-all duration-300"
+                className="bg-white text-blue-600 hover:bg-gray-100"
               >
                 {pageContent.cta.buttonText}
-              </button>
+              </EnhancedButton>
               {pageContent.cta.secondaryButtonText && (
-                <button
+                <EnhancedButton
+                  variant="secondary"
+                  size="lg"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold rounded-xl transition-all duration-300"
+                  className="border-2 border-white text-white hover:bg-white hover:text-blue-600"
                 >
                   {pageContent.cta.secondaryButtonText}
-                </button>
+                </EnhancedButton>
               )}
             </div>
           </div>
