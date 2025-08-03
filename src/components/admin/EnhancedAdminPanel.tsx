@@ -3,7 +3,7 @@ import {
   Shield, Settings, Package, CreditCard, Inbox, BarChart3, RefreshCw,
   Users, FileText, Database, Edit3, User, Move, Paintbrush,
   Sliders, Grip, Layers, Activity, Zap, Bell, Search,
-  Globe, Star, MessageCircle,
+  Globe, Star, MessageCircle, Image, Menu,
   Cloud, Server, Cpu, HardDrive, Wifi, Lock, AlertTriangle, BookOpen
 } from 'lucide-react';
 import LoginForm from './LoginForm';
@@ -258,7 +258,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="bg-white dark:bg-gray-800 p-6 rounded-xl shadow-lg">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">حالة الخادم</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">حالة ��لخادم</p>
                     <p className="text-2xl font-bold text-green-600">متصل</p>
                   </div>
                   <Server className="h-8 w-8 text-green-600" />
@@ -358,10 +358,10 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="text-center">
                 <Star className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  المساعد الذكي غير متاح حالي��ً
+                  المساعد ��لذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
-                  سيتم تفعيل المساعد ا��ذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
+                  سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
                 </p>
                 <button className="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
                   اشترك في الإشعارات
