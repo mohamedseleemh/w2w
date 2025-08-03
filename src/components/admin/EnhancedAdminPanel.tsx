@@ -25,20 +25,21 @@ import { TemplatesManager } from './TemplatesManager';
 import LandingPageManager from './LandingPageManager';
 import { useData } from '../../context/DataContext';
 
-type TabType = 
-  | 'dashboard' 
+type TabType =
+  | 'dashboard'
+  | 'landing-page'
   | 'visual-editor'
-  | 'services' 
-  | 'services-layout' 
-  | 'payments' 
-  | 'orders' 
-  | 'analytics' 
-  | 'users' 
-  | 'reports' 
-  | 'backup' 
-  | 'drag-drop' 
-  | 'themes' 
-  | 'admin-settings' 
+  | 'services'
+  | 'services-layout'
+  | 'payments'
+  | 'orders'
+  | 'analytics'
+  | 'users'
+  | 'reports'
+  | 'backup'
+  | 'drag-drop'
+  | 'themes'
+  | 'admin-settings'
   | 'settings'
   | 'system-monitor'
   | 'security'
@@ -66,7 +67,7 @@ const EnhancedAdminPanel: React.FC = () => {
     {
       id: '1',
       title: 'طلب جديد',
-      message: 'تم استلام طلب جديد من أحم�� محمد',
+      message: 'ت�� استلام طلب جديد من أحم�� محمد',
       type: 'info',
       time: 'منذ دقيقتين',
       read: false
