@@ -41,7 +41,7 @@ function App() {
           <div className="min-h-screen transition-colors duration-300 dark:bg-gray-900">
             <Router>
               <Routes>
-                <Route path="/" element={<ModernLandingPage />} />
+                <Route path="/" element={<LandingPage />} />
                 <Route path="/admin" element={<EnhancedAdminPanel />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
