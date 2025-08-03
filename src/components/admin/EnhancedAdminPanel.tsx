@@ -194,6 +194,8 @@ const EnhancedAdminPanel: React.FC = () => {
         return <AdvancedDashboard />;
       case 'landing-page':
         return <AdvancedContentManager />;
+      case 'section-manager':
+        return <SectionManager />;
       case 'visual-editor':
         return <VisualLandingEditor />;
       case 'media':
