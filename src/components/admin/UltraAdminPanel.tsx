@@ -22,7 +22,7 @@ import {
 
 // Import admin components
 import AdvancedDashboard from './AdvancedDashboard';
-import AdvancedContentManager from './AdvancedContentManager';
+import RealContentManager from './RealContentManager';
 import EnhancedSettingsManager from './EnhancedSettingsManager';
 import EnhancedPaymentMethodsManager from './EnhancedPaymentMethodsManager';
 import { BackupManager } from './BackupManager';
@@ -103,7 +103,7 @@ const UltraAdminPanel: React.FC = () => {
     {
       id: '3',
       title: 'تحذير النظام',
-      message: 'استخدام الذاكرة وصل إلى 85%',
+      message: '��ستخدام الذاكرة وصل إلى 85%',
       type: 'warning',
       time: 'منذ 30 دقيقة',
       read: true
@@ -194,7 +194,7 @@ const UltraAdminPanel: React.FC = () => {
 
   const statCards = [
     {
-      title: 'إجمالي المستخدمين',
+      title: 'إجما��ي المستخدمين',
       value: metrics.totalUsers.toLocaleString(),
       change: '+12.3%',
       trend: 'up',
@@ -238,7 +238,7 @@ const UltraAdminPanel: React.FC = () => {
       case 'analytics':
         return <AnalyticsPanel />;
       case 'content':
-        return <AdvancedContentManager />;
+        return <RealContentManager />;
       case 'services':
         return <ServicesManager />;
       case 'orders':
