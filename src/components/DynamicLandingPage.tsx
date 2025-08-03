@@ -716,15 +716,11 @@ const DynamicLandingPage: React.FC = () => {
       )}
 
       {/* WhatsApp Float Button */}
-      <a
-        href={`https://wa.me/${pageContent.contact.phone.replace(/[^0-9]/g, '')}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 left-6 w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
-        title="تواصل معنا عبر واتساب"
-      >
-        <MessageCircle className="h-6 w-6 text-white group-hover:scale-110 transition-transform" />
-      </a>
+      <WhatsAppButton
+        variant="float"
+        size="lg"
+        message="مرحباً، أحتاج مساعدة في خدماتكم"
+      />
     </div>
   );
 };
