@@ -173,48 +173,6 @@ export const BackupManager: React.FC = () => {
     }
   };
 
-  const createAutomaticBackup = async () => {
-    try {
-      const backupData = {
-        services,
-        orders,
-        settings: {
-          theme: localStorage.getItem('theme'),
-          language: localStorage.getItem('language'),
-          customization: localStorage.getItem('kyc-customization')
-        },
-        timestamp: new Date().toISOString()
-      };
-
-      const autoBackup: BackupData = {
-        id: `auto-${Date.now()}`,
-        name: `نسخة تلقائية - ${new Date().toLocaleDateString('ar-SA')}`,
-        date: new Date().toISOString(),
-        size: `${(JSON.stringify(backupData).length / 1024).toFixed(1)} KB`,
-        type: 'automatic',
-        status: 'completed',
-        includes: ['services', 'orders', 'settings']
-      };
-
-      localStorage.setItem(`kyc-backup-${autoBackup.id}`, JSON.stringify(backupData));
-
-      // Keep only last 10 automatic backups
-      const updatedBackups = [autoBackup, ...backups];
-      const filteredBackups = updatedBackups.filter((backup, index) => {
-        if (backup.type === 'automatic' && index > 9) {
-          localStorage.removeItem(`kyc-backup-${backup.id}`);
-          return false;
-        }
-        return true;
-      });
-
-      setBackups(filteredBackups);
-      localStorage.setItem('kyc-backups', JSON.stringify(filteredBackups));
-    } catch (error) {
-      console.error('خطأ في إنشاء النسخة التلقائية:', error);
-    }
-  };
-
   const restoreBackup = async (backupId: string) => {
     if (!confirm('هل أنت متأكد من استعادة هذه النسخة؟ سيتم استبدال البيانات الحالية.')) {
       return;
@@ -311,7 +269,7 @@ export const BackupManager: React.FC = () => {
       URL.revokeObjectURL(url);
     } catch (error) {
       console.error('خطأ في تحميل النسخة:', error);
-      alert('حدث خطأ أثناء تحميل النسخة الاحتياطية');
+      alert('حدث خطأ أثناء تح��يل النسخة الاحتياطية');
     }
   };
 

@@ -96,7 +96,13 @@ export const DragDropManager: React.FC = () => {
     ];
 
     setCategories(defaultCategories);
-  };
+  }, [services]);
+
+  useEffect(() => {
+    if (services.length > 0) {
+      initializeCategories();
+    }
+  }, [services, initializeCategories]);
 
   const handleDragStart = (e: React.DragEvent, item: DragDropItem) => {
     setDraggedItem(item);
@@ -703,8 +709,9 @@ export const DragDropManager: React.FC = () => {
       {/* Floating Action Button */}
       <div className="fixed bottom-6 left-6">
         <button
-          onClick={() => setShowAddForm(true)}
+          onClick={() => addNewItem('active-services')}
           className="bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition-all duration-200 hover:scale-105"
+          title="إضافة عنصر جديد"
         >
           <Plus className="h-6 w-6" />
         </button>

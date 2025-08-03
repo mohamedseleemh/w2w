@@ -1,5 +1,6 @@
 import { supabase } from '../lib/supabase';
 import { errorHandlers } from '../utils/errorHandler';
+import { showErrorToast, showSuccessToast } from '../utils/errorToast';
 
 export interface LandingPageSection {
   id: string;
@@ -60,34 +61,53 @@ export interface LandingCustomization {
 }
 
 export class LandingPageService {
-  private async _handleDbCall<T>(dbCall: Promise<{ data: T; error: any; }>, errorMessage: string): Promise<T> {
+  private async _handleDbCall<T>(dbCall: Promise<{ data: T; error: any; }>, errorMessage: string, context?: string): Promise<T> {
     try {
       const { data, error } = await dbCall;
       if (error) {
-        throw error;
+        const errorMsg = errorHandlers.extractErrorMessage(error);
+        console.error(errorMessage, errorMsg);
+        // Don't show toast here - let the calling function decide
+        throw new Error(errorMsg);
       }
       return data;
     } catch (error) {
-      console.error(errorMessage, error);
-      throw errorHandlers.extractErrorMessage(error);
+      if (error instanceof Error) {
+        throw error;
+      }
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.error(errorMessage, errorMsg);
+      throw new Error(errorMsg);
     }
   }
 
   // Page Templates Operations
   async getPageTemplates(pageType: string = 'landing'): Promise<PageTemplate[]> {
-    const { data, error } = await supabase
-        .from('page_templates')
-        .select('*')
-        .eq('page_type', pageType)
-        .eq('active', true)
-        .order('created_at', { ascending: false });
+    try {
+      if (!supabase) {
+        console.warn('Database not available, returning empty templates');
+        return [];
+      }
 
-    if (error) {
-      console.warn('Database error fetching page templates:', errorHandlers.extractErrorMessage(error));
+      const { data, error } = await supabase
+          .from('page_templates')
+          .select('*')
+          .eq('page_type', pageType)
+          .eq('active', true)
+          .order('created_at', { ascending: false });
+
+      if (error) {
+        const errorMsg = errorHandlers.extractErrorMessage(error);
+        console.warn('Database error fetching page templates:', errorMsg);
+        return [];
+      }
+
+      return data || [];
+    } catch (error) {
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.warn('Failed to fetch page templates:', errorMsg);
       return [];
     }
-
-    return data || [];
   }
 
   async savePageTemplate(template: Omit<PageTemplate, 'id' | 'created_at' | 'updated_at'>, isDefault: boolean = false): Promise<PageTemplate> {
@@ -141,45 +161,70 @@ export class LandingPageService {
 
   // Landing Page Customization Operations
   async getLandingCustomization(sectionName?: string): Promise<LandingCustomization[]> {
-    let query = supabase
-      .from('landing_customization')
-      .select('*')
-      .eq('active', true);
+    try {
+      if (!supabase) {
+        console.warn('Database not available, returning empty customization');
+        return [];
+      }
 
-    if (sectionName) {
-      query = query.eq('section_name', sectionName);
+      let query = supabase
+        .from('landing_customization')
+        .select('*')
+        .eq('active', true);
+
+      if (sectionName) {
+        query = query.eq('section_name', sectionName);
+      }
+
+      const dbCall = query.order('created_at', { ascending: false });
+
+      return this._handleDbCall(dbCall, 'Error fetching landing customization:');
+    } catch (error) {
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.warn('Failed to fetch landing customization:', errorMsg);
+      return [];
     }
-
-    const dbCall = query.order('created_at', { ascending: false });
-
-    return this._handleDbCall(dbCall, 'Error fetching landing customization:');
   }
 
   async saveLandingCustomization(sectionName: string, content: any): Promise<LandingCustomization> {
-    const { data: existingData } = await supabase
-      .from('landing_customization')
-      .select('id')
-      .eq('section_name', sectionName)
-      .eq('active', true)
-      .single();
+    try {
+      if (!supabase) {
+        throw new Error('Database not available');
+      }
 
-    if (existingData) {
-      const dbCall = supabase
+      const { data: existingData, error: selectError } = await supabase
         .from('landing_customization')
-        .update({ content, updated_at: new Date().toISOString() })
-        .eq('id', existingData.id)
-        .select()
+        .select('id')
+        .eq('section_name', sectionName)
+        .eq('active', true)
         .single();
 
-      return this._handleDbCall(dbCall, 'Error updating landing customization:');
-    } else {
-      const dbCall = supabase
-        .from('landing_customization')
-        .insert([{ section_name: sectionName, content }])
-        .select()
-        .single();
+      if (selectError && selectError.code !== 'PGRST116') { // PGRST116 is "no rows found"
+        throw selectError;
+      }
 
-      return this._handleDbCall(dbCall, 'Error creating landing customization:');
+      if (existingData) {
+        const dbCall = supabase
+          .from('landing_customization')
+          .update({ content, updated_at: new Date().toISOString() })
+          .eq('id', existingData.id)
+          .select()
+          .single();
+
+        return this._handleDbCall(dbCall, 'Error updating landing customization:');
+      } else {
+        const dbCall = supabase
+          .from('landing_customization')
+          .insert([{ section_name: sectionName, content }])
+          .select()
+          .single();
+
+        return this._handleDbCall(dbCall, 'Error creating landing customization:');
+      }
+    } catch (error) {
+      const errorMsg = errorHandlers.extractErrorMessage(error);
+      console.error('Failed to save landing customization:', errorMsg);
+      throw new Error(`Failed to save customization: ${errorMsg}`);
     }
   }
 
@@ -242,7 +287,7 @@ export class LandingPageService {
         visible: true,
         content: {
           title: 'مرحباً بكم في منصتنا',
-          subtitle: 'خدمات رقمية متطورة',
+          subtitle: 'خدمات ر��مية متطورة',
           description: 'نقدم حلول مبتكرة وآمنة لاحتياجاتكم الرقمية',
           buttonText: 'ابدأ الآن'
         },

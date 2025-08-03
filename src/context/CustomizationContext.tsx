@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import toast from 'react-hot-toast';
+import { landingPageService } from '../services/landingPageService';
 
 export interface HeroSection {
   title: string;
@@ -82,7 +83,7 @@ const defaultCustomization: CustomizationData = {
     titleGradient: 'المالية الرقمية',
     subtitle: 'نحن نعيد تعريف الخدمات المالية الرقمية من خلال تقديم حلول مبتكرة وآمنة ومتطورة تلبي احتياجاتك المالية بكفاءة عالية وموثوقية استثنائية',
     button1Text: 'ابدأ رحلتك معنا',
-    button2Text: 'استكشف الخدمات',
+    button2Text: '��ستكشف الخدمات',
     badgeText: 'منصة رائدة في الخدمات المالية الرقمية',
     showStats: true,
     statsData: {
@@ -160,31 +161,53 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
   useEffect(() => {
     const loadCustomization = async () => {
       setLoading(true);
+      setError(null);
+
       try {
-        const template = await landingPageService.getActiveLandingPageTemplate();
-        if (template && template.template_data && template.template_data.length > 0) {
-          const pageData = template.template_data[0] as any;
-          setCustomization({
-            hero: pageData.hero || defaultCustomization.hero,
-            globalSettings: pageData.styles || defaultCustomization.globalSettings,
-            pageElements: pageData.elements || [],
-            pageLayout: pageData.settings || defaultCustomization.pageLayout,
-          });
+        // First try to load from localStorage as fallback
+        const localCustomization = localStorage.getItem('kyctrust_customization');
+        if (localCustomization) {
+          try {
+            const parsed = JSON.parse(localCustomization);
+            setCustomization({
+              hero: parsed.hero || defaultCustomization.hero,
+              globalSettings: parsed.globalSettings || defaultCustomization.globalSettings,
+              pageElements: parsed.pageElements || defaultCustomization.pageElements,
+              pageLayout: parsed.pageLayout || defaultCustomization.pageLayout,
+            });
+          } catch (parseError) {
+            console.warn('Failed to parse local customization, using defaults');
+            setCustomization(defaultCustomization);
+          }
         } else {
-          // If no template in DB, use default and save it
-          await landingPageService.savePageTemplate({
-            name: 'Default Landing Page',
-            page_type: 'landing',
-            template_data: [defaultCustomization],
-            theme_config: defaultCustomization.globalSettings,
-            is_default: true,
-            active: true,
-          });
           setCustomization(defaultCustomization);
         }
+
+        // Then try to load from database and update if available
+        try {
+          const template = await landingPageService.getActiveLandingPageTemplate();
+          if (template && template.template_data && template.template_data.length > 0) {
+            const pageData = template.template_data[0] as any;
+            const dbCustomization = {
+              hero: pageData.hero || defaultCustomization.hero,
+              globalSettings: pageData.styles || defaultCustomization.globalSettings,
+              pageElements: pageData.elements || defaultCustomization.pageElements,
+              pageLayout: pageData.settings || defaultCustomization.pageLayout,
+            };
+            setCustomization(dbCustomization);
+            // Update localStorage with DB data
+            localStorage.setItem('kyctrust_customization', JSON.stringify(dbCustomization));
+          }
+        } catch (dbError) {
+          console.warn('Failed to load from database, using cached/default data:', dbError);
+          // Don't throw here, we already have fallback data loaded
+        }
+
       } catch (err) {
-        setError('فشل في تحميل بيانات التخصيص');
         console.error('Error loading customization:', err);
+        setError('فشل في تحميل بيانات التخصيص - تم استخدام الإعدادات الافتراضية');
+        // Use default customization even if there's an error
+        setCustomization(defaultCustomization);
       } finally {
         setLoading(false);
       }
@@ -193,7 +216,7 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
     loadCustomization();
   }, []);
 
-  const saveToDatabase = async (data: CustomizationData) => {
+  const saveToDatabase = async (data: CustomizationData): Promise<boolean> => {
     try {
       await landingPageService.savePageTemplate({
         name: 'Default Landing Page',
@@ -203,9 +226,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
         is_default: true,
         active: true,
       });
+      return true;
     } catch (error) {
-      console.error('Error saving customization to DB:', error);
-      throw new Error('فشل في حفظ التخصيص في قاعدة البيانات');
+      console.warn('Failed to save to database, using localStorage fallback:', error);
+      // Save to localStorage as fallback
+      try {
+        localStorage.setItem('kyctrust_customization', JSON.stringify(data));
+        return false; // Indicate DB save failed but localStorage succeeded
+      } catch (localError) {
+        console.error('Failed to save to localStorage as well:', localError);
+        throw new Error('فشل في حفظ التخصيص');
+      }
     }
   };
 
@@ -214,11 +245,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, hero };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
+
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في حفظ إعدادات القسم الرئيسي';
       setError(errorMessage);
+      console.error('Error updating hero section:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
@@ -230,10 +267,8 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, globalSettings: settings };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
 
-      // Apply CSS variables to the document
+      // Apply CSS variables to the document immediately
       const root = document.documentElement;
       root.style.setProperty('--primary-color', settings.primaryColor);
       root.style.setProperty('--secondary-color', settings.secondaryColor);
@@ -242,9 +277,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       root.style.setProperty('--border-radius', settings.borderRadius);
       root.style.setProperty('--spacing', settings.spacing);
 
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
+
     } catch (error) {
       const errorMessage = 'فشل في حفظ الإعدادات العامة';
       setError(errorMessage);
+      console.error('Error updating global settings:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
@@ -256,11 +299,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, pageElements: elements };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
+
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في حفظ عناصر الصفحة';
       setError(errorMessage);
+      console.error('Error updating page elements:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
@@ -272,11 +321,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, pageLayout: { ...customization.pageLayout, ...layout } };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
+
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في حفظ تخطيط الصفحة';
       setError(errorMessage);
+      console.error('Error updating page layout:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
@@ -288,7 +343,8 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       const newElements = [...customization.pageElements, element];
       await updatePageElements(newElements);
     } catch (error) {
-      throw new Error('فشل في إضافة الع��صر');
+      console.error('Error adding page element:', error);
+      throw new Error('فشل في إضافة العنصر');
     }
   };
 
@@ -299,6 +355,7 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       );
       await updatePageElements(newElements);
     } catch (error) {
+      console.error('Error updating page element:', error);
       throw new Error('فشل في تحديث العنصر');
     }
   };
@@ -308,6 +365,7 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       const newElements = customization.pageElements.filter(el => el.id !== id);
       await updatePageElements(newElements);
     } catch (error) {
+      console.error('Error deleting page element:', error);
       throw new Error('فشل في حذف العنصر');
     }
   };
@@ -315,7 +373,11 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
   const publishPage = async (): Promise<void> => {
     try {
       setLoading(true);
-      // Here you would typically send the data to your backend
+
+      // Save to database first
+      const saved = await saveToDatabase(customization);
+
+      // Also save to localStorage as published version
       localStorage.setItem('kyctrust_published_page', JSON.stringify(customization));
 
       // Trigger a page refresh to apply changes
@@ -323,10 +385,15 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
         detail: customization
       }));
 
-      setError(null);
+      if (!saved) {
+        setError('تم نشر الصفحة محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في نشر الصفحة';
       setError(errorMessage);
+      console.error('Error publishing page:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
