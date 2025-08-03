@@ -71,7 +71,7 @@ const loadPageContent = () => {
       visible: true
     },
     stats: {
-      title: 'أرقامن�� تتحدث',
+      title: 'أرقامنا تتحدث',
       items: [
         { label: 'عميل راضي', value: 10000, suffix: '+', icon: '👥', color: '#3B82F6' },
         { label: 'معاملة يومية', value: 5000, suffix: '+', icon: '💳', color: '#10B981' },
@@ -113,7 +113,7 @@ const loadPageContent = () => {
     },
     cta: {
       title: 'ابدأ رحلتك معنا اليوم',
-      subtitle: 'انضم إلى آلاف العملاء الراضين واحصل على أفضل الخدمات المالية الرقمية',
+      subtitle: 'ان��م إلى آلاف العملاء الراضين واحصل على أفضل الخدمات المالية الرقمية',
       buttonText: 'ابدأ الآن',
       secondaryButtonText: 'تواصل معنا',
       backgroundColor: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
@@ -392,7 +392,13 @@ const DynamicLandingPage: React.FC = () => {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {activeServices.map((service, index) => (
-                <div key={service.id} className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group">
+                <EnhancedCard
+                  key={service.id}
+                  variant="elevated"
+                  hover
+                  glow
+                  className="overflow-hidden group"
+                >
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
@@ -407,14 +413,16 @@ const DynamicLandingPage: React.FC = () => {
                     <p className="text-gray-600 dark:text-gray-400 mb-6">
                       خدمة متميزة تلبي احتياجاتك بأعلى معايير الجودة والأمان
                     </p>
-                    <button
+                    <EnhancedButton
+                      variant="primary"
+                      fullWidth
+                      glow
                       onClick={() => handleServiceOrder(service)}
-                      className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-300"
                     >
                       اطلب الآن
-                    </button>
+                    </EnhancedButton>
                   </div>
-                </div>
+                </EnhancedCard>
               ))}
             </div>
           </div>
