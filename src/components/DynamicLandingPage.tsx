@@ -526,25 +526,28 @@ const DynamicLandingPage: React.FC = () => {
               {pageContent.cta.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <EnhancedButton
-                variant="primary"
-                size="lg"
+              <SuperButton
+                variant="neon"
+                size="xl"
                 glow
-                elevation
                 onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                 className="bg-white text-blue-600 hover:bg-gray-100"
+                animation="glow"
+                icon={<Sparkles className="h-6 w-6" />}
               >
                 {pageContent.cta.buttonText}
-              </EnhancedButton>
+              </SuperButton>
               {pageContent.cta.secondaryButtonText && (
-                <EnhancedButton
-                  variant="secondary"
-                  size="lg"
+                <SuperButton
+                  variant="glass"
+                  size="xl"
                   onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
                   className="border-2 border-white text-white hover:bg-white hover:text-blue-600"
+                  animation="slide"
+                  icon={<MessageCircle className="h-6 w-6" />}
                 >
                   {pageContent.cta.secondaryButtonText}
-                </EnhancedButton>
+                </SuperButton>
               )}
             </div>
           </div>
