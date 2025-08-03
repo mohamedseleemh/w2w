@@ -96,7 +96,7 @@ export const DragDropManager: React.FC = () => {
     ];
 
     setCategories(defaultCategories);
-  };
+  }, [services]);
 
   const handleDragStart = (e: React.DragEvent, item: DragDropItem) => {
     setDraggedItem(item);
