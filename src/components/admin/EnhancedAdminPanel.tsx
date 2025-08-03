@@ -173,7 +173,7 @@ const EnhancedAdminPanel: React.FC = () => {
       icon: FileText,
       tabs: [
         { id: 'reports' as TabType, name: 'التقارير المفصلة', icon: FileText, color: 'text-blue-600' },
-        { id: 'backup' as TabType, name: '��لنسخ الاحتياطية', icon: Database, color: 'text-green-600' }
+        { id: 'backup' as TabType, name: 'النسخ الاحتياطية', icon: Database, color: 'text-green-600' }
       ]
     },
     {
@@ -207,7 +207,7 @@ const EnhancedAdminPanel: React.FC = () => {
       case 'services-layout':
         return <ServicesLayoutEditor />;
       case 'payments':
-        return <PaymentMethodsManager />;
+        return <EnhancedPaymentMethodsManager />;
       case 'orders':
         return <OrdersManager />;
       case 'analytics':
@@ -363,7 +363,7 @@ const EnhancedAdminPanel: React.FC = () => {
               <div className="text-center">
                 <Star className="h-16 w-16 text-yellow-500 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
-                  المساعد الذكي غير متاح حالي���ً
+                  المساعد الذكي غير متاح حالي��ً
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400 mb-6">
                   سيتم تفعيل المساعد الذكي قريباً لمساعدتك في إدارة الموقع والحصول على اقتراحات ذكية
@@ -419,7 +419,7 @@ const EnhancedAdminPanel: React.FC = () => {
                   </div>
                   <div>
                     <h1 className="text-xl font-bold text-gray-900 dark:text-white">KYCtrust</h1>
-                    <p className="text-sm text-gray-600 dark:text-gray-400">لوحة تحكم متقدمة</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">ل��حة تحكم متقدمة</p>
                   </div>
                 </div>
               )}
