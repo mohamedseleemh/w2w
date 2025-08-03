@@ -1,11 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Shield, Settings, Package, CreditCard, Inbox, BarChart3, RefreshCw,
-  Users, FileText, Database, Edit3, User, Move, Paintbrush,
-  Sliders, Grip, Layers, Activity, Zap, Bell, Search,
-  Globe, Star, MessageCircle, Image, Menu, Layout,
-  Cloud, Server, Cpu, HardDrive, Wifi, Lock, AlertTriangle, BookOpen
-} from 'lucide-react';
+// Re-export the new Ultra Admin Panel
+export { default } from './UltraAdminPanel';
 import LoginForm from './LoginForm';
 import AdvancedDashboard from './AdvancedDashboard';
 import VisualLandingEditor from './VisualLandingEditor';
