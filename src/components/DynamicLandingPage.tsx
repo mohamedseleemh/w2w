@@ -46,7 +46,7 @@ const loadPageContent = () => {
       items: [
         { label: 'الرئيسية', url: '#home', active: true },
         { label: 'خدم��تنا', url: '#services', active: true },
-        { label: '��ن نحن', url: '#about', active: true },
+        { label: 'من نحن', url: '#about', active: true },
         { label: 'آراء العملاء', url: '#testimonials', active: true },
         { label: 'تواصل معنا', url: '#contact', active: true }
       ]
@@ -313,14 +313,16 @@ const DynamicLandingPage: React.FC = () => {
                   {pageContent.hero.buttonText}
                 </SuperButton>
                 {pageContent.hero.secondaryButtonText && (
-                  <EnhancedButton
-                    variant="secondary"
+                  <SuperButton
+                    variant="glass"
                     size="lg"
                     onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
                     className="border-2 border-white text-white hover:bg-white hover:text-blue-600"
+                    animation="scale"
+                    icon={<Target className="h-5 w-5" />}
                   >
                     {pageContent.hero.secondaryButtonText}
-                  </EnhancedButton>
+                  </SuperButton>
                 )}
               </div>
             </div>
