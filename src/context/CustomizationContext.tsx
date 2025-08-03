@@ -321,11 +321,17 @@ export const CustomizationProvider: React.FC<{ children: ReactNode }> = ({ child
       setLoading(true);
       const newCustomization = { ...customization, pageLayout: { ...customization.pageLayout, ...layout } };
       setCustomization(newCustomization);
-      await saveToDatabase(newCustomization);
-      setError(null);
+
+      const saved = await saveToDatabase(newCustomization);
+      if (!saved) {
+        setError('تم حفظ التغييرات محلياً - قاعدة البيانات غير متاحة');
+      } else {
+        setError(null);
+      }
     } catch (error) {
       const errorMessage = 'فشل في حفظ تخطيط الصفحة';
       setError(errorMessage);
+      console.error('Error updating page layout:', error);
       throw new Error(errorMessage);
     } finally {
       setLoading(false);
