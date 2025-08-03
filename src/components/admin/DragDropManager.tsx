@@ -99,6 +99,12 @@ export const DragDropManager: React.FC = () => {
     setCategories(defaultCategories);
   }, [services]);
 
+  useEffect(() => {
+    if (services.length > 0) {
+      initializeCategories();
+    }
+  }, [services, initializeCategories]);
+
   const handleDragStart = (e: React.DragEvent, item: DragDropItem) => {
     setDraggedItem(item);
     e.dataTransfer.effectAllowed = 'move';
@@ -163,7 +169,7 @@ export const DragDropManager: React.FC = () => {
     setCategories(newCategories);
     setDragOverCategory(null);
     
-    toast.success(`تم نقل "${item.name}" إل�� "${targetCategory.name}"`);
+    toast.success(`��م نقل "${item.name}" إل�� "${targetCategory.name}"`);
   };
 
   const handleItemAction = (action: 'edit' | 'delete' | 'toggle' | 'duplicate' | 'feature', item: DragDropItem) => {
@@ -423,7 +429,7 @@ export const DragDropManager: React.FC = () => {
             </div>
             <div>
               <p className="text-sm font-medium text-purple-900 dark:text-purple-100">
-                المحدد��
+                المحددة
               </p>
               <p className="text-2xl font-bold text-purple-600 dark:text-purple-400">
                 {selectedCount}
